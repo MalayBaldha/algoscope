@@ -1,0 +1,60 @@
+installation:
+  version: 6.12.1
+  installDate: 2026-10-10T17:46:28.515Z
+  lastUpdated: 2026-10-10T17:46:28.515Z
+  installShims: false
+modules:
+  - name: core
+    version: 6.12.1
+    installDate: 2026-10-10T17:46:27.247Z
+    lastUpdated: 2026-10-10T17:46:28.506Z
+    source: built-in
+    npmPackage: null
+    repoUrl: null
+  - name: bmm
+    version: 6.12.1
+    installDate: 2026-10-10T17:46:27.383Z
+    lastUpdated: 2026-10-10T17:46:28.507Z
+    source: built-in
+    npmPackage: null
+    repoUrl: null
+  - name: bmb
+    version: v2.2.2
+    installDate: 2026-10-10T17:46:27.497Z
+    lastUpdated: 2026-10-10T17:46:28.510Z
+    source: external
+    npmPackage: bmad-builder
+    repoUrl: https://github.com/bmad-code-org/bmad-builder
+    channel: stable
+    sha: 4a1422274a2acb0fb0ec0511753da6263948f072
+  - name: cis
+    version: v0.3.2
+    installDate: 2026-10-10T17:46:27.530Z
+    lastUpdated: 2026-10-10T17:46:28.512Z
+    source: external
+    npmPackage: bmad-creative-intelligence-suite
+    repoUrl: https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite
+    channel: stable
+    sha: 97298b22fee1c7e482710d3a8414adb5cfccccd9
+  - name: bmad-loop
+    version: v0.13.2
+    installDate: 2026-10-10T17:46:27.603Z
+    lastUpdated: 2026-10-10T17:46:28.514Z
+    source: external
+    npmPackage: null
+    repoUrl: https://github.com/bmad-code-org/bmad-loop
+    channel: stable
+    sha: 4a5c45390ff46c0fc28d316004ffe0ed7c8eea60
+  - name: gds
+    version: v0.7.2
+    installDate: 2026-10-10T17:46:27.835Z
+    lastUpdated: 2026-10-10T17:46:28.515Z
+    source: external
+    npmPackage: bmad-game-dev-studio
+    repoUrl: https://github.com/bmad-code-org/bmad-module-game-dev-studio.git
+    channel: stable
+    sha: 2486f5f5f3b8870baa6cee4615a870c0330f441c
+ides:
+  - claude-code
+  - antigravity-cli
+  - antigravity
