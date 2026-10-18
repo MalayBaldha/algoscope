@@ -11,7 +11,8 @@
 ## 1. System Paradigm & Boundary Rules
 
 AlgoScope is built as an **Event-Sourced Batch Execution System** across a decoupled full-stack monorepo:
-1. **Separation of Concerns:** 
+
+1. **Separation of Concerns:**
    - **Backend (FastAPI / Python 3.12+):** Algorithmic computation engine, execution tracing generator, progress persistence, and test verification runner.
    - **Frontend (Next.js 14+ / TypeScript):** Visual presentation, user interaction, playback state machine, animation canvas adapters, and personal dashboard.
 2. **Execution Boundary:** Algorithms are executed on the backend via deterministic batch runs that return an immutable sequence of step frames (`Frame[]`). The frontend is a pure consumer and renderer of these timeline events, decoupling algorithm execution from visualization framerates.
@@ -26,6 +27,7 @@ AlgoScope is built as an **Event-Sourced Batch Execution System** across a decou
 Every algorithm execution endpoint (`POST /api/dsa/{topic}/{problem}/execute`) adheres to a strict shared contract between FastAPI (Pydantic) and Next.js (TypeScript / Zod).
 
 ### 2.1 Backend Contract (Python / Pydantic)
+
 ```python
 # backend/app/schemas/frame.py
 from typing import Any, Dict, List, Optional
@@ -49,16 +51,18 @@ class AlgorithmExecutionResponse(BaseModel):
     total_steps: int
     frames: List[Frame]
     metrics: Dict[str, Any] = Field(
-        default_factory=dict, 
+        default_factory=dict,
         description="e.g. {'comparisons': 12, 'swaps': 4, 'time_complexity': 'O(N)', 'space_complexity': 'O(1)'}"
     )
     error: Optional[str] = None
 ```
 
 ### 2.2 Frontend Contract (TypeScript)
+
 ```typescript
 // frontend/types/dsa.ts
-export type HighlightColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
+export type HighlightColor =
+  "primary" | "secondary" | "success" | "danger" | "warning";
 
 export interface FrameHighlight {
   indices: (number | string)[];
@@ -101,18 +105,19 @@ stateDiagram-v2
     [*] --> IDLE
     IDLE --> PLAYING: PLAY(frames)
     IDLE --> STEPPING: STEP_FORWARD / STEP_BACK
-    
+
     PLAYING --> PAUSED: PAUSE
     PLAYING --> COMPLETED: currentStep == totalSteps - 1
-    
+
     PAUSED --> PLAYING: RESUME
     PAUSED --> STEPPING: STEP_FORWARD / STEP_BACK / SCRUB_TO(index)
-    
+
     STEPPING --> PAUSED: IDLE_TIMEOUT / USER_ACTION
     COMPLETED --> PLAYING: REPLAY / SCRUB_TO(0)
 ```
 
 ### State Machine Specification (`useAlgorithmPlayback`)
+
 - **State Vector:**
   - `status: 'idle' | 'playing' | 'paused' | 'completed'`
   - `currentIndex: number` (0 to `frames.length - 1`)
@@ -139,7 +144,7 @@ erDiagram
     TOPIC ||--o{ ASSESSMENT : evaluates
     TOPIC ||--o{ PROGRESS : tracks
     PROBLEM ||--o{ PROGRESS : records
-    
+
     TOPIC {
         int id PK
         string slug UK
@@ -148,7 +153,7 @@ erDiagram
         int difficulty_order
         string icon
     }
-    
+
     PROBLEM {
         int id PK
         int topic_id FK
@@ -160,7 +165,7 @@ erDiagram
         json hints
         text starter_template
     }
-    
+
     PROGRESS {
         int id PK
         int topic_id FK
@@ -171,7 +176,7 @@ erDiagram
         int time_spent_seconds
         datetime completed_at
     }
-    
+
     ASSESSMENT {
         int id PK
         int topic_id FK
@@ -182,7 +187,7 @@ erDiagram
         json questions_and_answers
         datetime created_at
     }
-    
+
     STREAK {
         int id PK
         date activity_date UK

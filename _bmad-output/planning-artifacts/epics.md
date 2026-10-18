@@ -64,14 +64,17 @@ This document provides the complete epic and story breakdown for **AlgoScope**, 
 ## Epic List
 
 ### Epic 1: Platform Foundation & Core Playback Engine (Phase 1)
+
 **Goal:** Establish the full-stack monorepo, local SQLite database models, owner-implemented OAuth authentication, topic hub shell, and the shared `useAlgorithmPlayback` state machine with UI controls.  
 **FRs covered:** FR1, FR2, FR3, FR6, FR7, FR8, ARCH-1, ARCH-2, ARCH-4, UX-DR1, UX-DR4.
 
 ### Epic 2: Linear Archetype — Topic 1: Arrays & Strings (Phase 2A)
+
 **Goal:** Deliver the complete end-to-end learning lifecycle for Topic 1, featuring Python sliding window/two pointer generators, Pytest suites, TypeScript linear canvas adapter, the Traffic Rate-Limiter mini-app, and assessment grill tracking.  
 **FRs covered:** FR2, FR3, FR4, FR5, FR6, ARCH-1, ARCH-3, UX-DR2, UX-DR3.
 
 ### Epic 3: Graph Archetype — Topic 11: Graphs (Phase 2B)
+
 **Goal:** Deliver the complete end-to-end learning lifecycle for Topic 11, featuring Python BFS/DFS & Dijkstra generators, Pytest suites, React Flow graph canvas adapter with wavefront animations, the Transit Route Pathfinder mini-app, and cross-archetype dashboard analytics.  
 **FRs covered:** FR1, FR2, FR3, FR4, FR5, FR6, FR7, ARCH-1, ARCH-3, UX-DR2, UX-DR3.
 
@@ -82,11 +85,13 @@ This document provides the complete epic and story breakdown for **AlgoScope**, 
 **Goal:** Establish the runnable monorepo, persistent SQLite database models, NextAuth OAuth security, Topic Hub catalog, and the reusable TypeScript timeline playback engine.
 
 ### Story 1.1: Monorepo Scaffolding & Dual-Stack Environment Setup
+
 As a **developer learning full-stack engineering**,  
 I want **a configured monorepo with Next.js 14 App Router, FastAPI in Python 3.12 (uv), linters, and typechecking**,  
 So that **I have a unified workspace with zero cross-environment drift**.
 
 **Acceptance Criteria:**
+
 - **Given** a clean clone of the repository,
 - **When** `npm install` and `uv sync` are executed,
 - **Then** the Next.js frontend builds cleanly via `npm run build` with Tailwind and shadcn/ui configured,
@@ -94,11 +99,13 @@ So that **I have a unified workspace with zero cross-environment drift**.
 - **And** strict linting (`eslint`, `ruff`) and typechecking (`tsc --noEmit`, `mypy`/`pyright`) pass without errors.
 
 ### Story 1.2: Owner-Implemented OAuth Authentication & Session Management
+
 As the **platform owner**,  
 I want **to implement NextAuth.js OAuth configuration with guided TODO stubs**,  
 So that **I gain practical authentication expertise and my personal learning data is secured**.
 
 **Acceptance Criteria:**
+
 - **Given** an unauthenticated visitor navigating to protected routes (`/dashboard`, `/topics/...`),
 - **When** the page loads,
 - **Then** NextAuth middleware redirects to the sign-in screen,
@@ -106,11 +113,13 @@ So that **I gain practical authentication expertise and my personal learning dat
 - **Then** the user session is created and persisted, allowing access to the protected Topic Hub and Dashboard.
 
 ### Story 1.3: SQLite Database Models & Topic Seed Scaffolding
+
 As a **learner**,  
 I want **SQLAlchemy 2.0 models for Topics, Problems, Progress, Assessments, and Streaks persisted to SQLite**,  
 So that **my learning state and test results persist across sessions offline**.
 
 **Acceptance Criteria:**
+
 - **Given** the FastAPI backend starts with a fresh SQLite database,
 - **When** database migrations or metadata initialization runs,
 - **Then** tables for `topics`, `problems`, `progress`, `assessments`, and `streaks` are created,
@@ -118,11 +127,13 @@ So that **my learning state and test results persist across sessions offline**.
 - **And** `GET /api/topics` returns the 14 topics with their initial status `"not_started"`.
 
 ### Story 1.4: Frame Schema Contracts & Playback Engine State Machine (`useAlgorithmPlayback`)
+
 As a **frontend developer**,  
 I want **to implement the `useAlgorithmPlayback` hook and playback control UI adhering to the shared `Frame` schema**,  
 So that **any algorithmic frame sequence can be smoothly scrubbed, stepped, and inspected**.
 
 **Acceptance Criteria:**
+
 - **Given** a mock sequence of 10 `Frame` objects matching `types/dsa.ts`,
 - **When** the user mounts the `useAlgorithmPlayback` hook,
 - **Then** clicking `Play` starts an automatic timer advancing `currentIndex` at the chosen speed (0.5x, 1x, 2x),
@@ -131,11 +142,13 @@ So that **any algorithmic frame sequence can be smoothly scrubbed, stepped, and 
 - **And** full keyboard shortcuts (Space for Play/Pause, ArrowLeft/Right for Step) control playback.
 
 ### Story 1.5: Dashboard Shell & Assessment Data API
+
 As a **learner**,  
 I want **a dashboard displaying practice streaks and pre/post assessment comparison widgets**,  
 So that **I can visually track my pattern recognition rate and topic mastery over time**.
 
 **Acceptance Criteria:**
+
 - **Given** the user visits `/dashboard`,
 - **When** `GET /api/progress` and `GET /api/assessments` are queried,
 - **Then** the dashboard displays topic mastery breakdown, active daily streak, and before/after assessment radar/bar charts,
@@ -148,11 +161,13 @@ So that **I can visually track my pattern recognition rate and topic mastery ove
 **Goal:** Complete the full learning loop for Topic 1 (Arrays & Strings), mastering sliding window and two pointers through Python generator solutions, Pytest suites, TypeScript linear canvas adapters, and the Traffic Rate-Limiter mini-app.
 
 ### Story 2.1: Topic 1 Diagnostic Grill & Educational Hub
+
 As a **learner starting Arrays & Strings**,  
 I want **to complete a pre-assessment grill and review real-world pattern inspirations**,  
 So that **my baseline conceptual and pattern recognition scores are captured before coding**.
 
 **Acceptance Criteria:**
+
 - **Given** the user navigates to `/topics/arrays-and-strings`,
 - **When** starting the topic for the first time,
 - **Then** the system presents the interactive pre-assessment grill (3 questions on sliding window vs. two pointer tradeoffs),
@@ -160,22 +175,26 @@ So that **my baseline conceptual and pattern recognition scores are captured bef
 - **And** the Overview page presents real-world applications (TCP sliding window, packet buffers) with pattern cheat sheet cards.
 
 ### Story 2.2: Python Sliding Window Algorithm & Frame Yields (Backend)
+
 As a **backend learner**,  
 I want **to implement the Sliding Window Maximum problem in Python with `yield Frame(...)` step generation**,  
 So that **I master window boundary contraction logic and instrument live execution traces**.
 
 **Acceptance Criteria:**
+
 - **Given** the file `backend/app/dsa/arrays/sliding_window.py` with TODO stubs,
 - **When** the owner implements the algorithm logic and runs `pytest tests/dsa/test_arrays.py`,
 - **Then** all unit and edge-case tests pass (empty arrays, window size 1, window size > len, all negative numbers),
 - **And** `POST /api/dsa/arrays/sliding-window/execute` returns a valid `AlgorithmExecutionResponse` with `Frame[]` capturing pointers (`left`, `right`), window state, and highlight colors at every step.
 
 ### Story 2.3: TypeScript Linear Array Canvas Adapter (Frontend)
+
 As a **frontend learner**,  
 I want **to implement a TypeScript canvas adapter component using Framer Motion**,  
 So that **backend array frames render smoothly with sliding window bounding boxes and pointer cursors**.
 
 **Acceptance Criteria:**
+
 - **Given** an array of `Frame` objects received from the backend,
 - **When** rendered within the Linear Canvas component implemented by the owner,
 - **Then** array elements render as numbered bar/card nodes with smooth layout animations,
@@ -184,33 +203,39 @@ So that **backend array frames render smoothly with sliding window bounding boxe
 - **And** stepping forward and backward smoothly animates window expansion and contraction.
 
 ### Story 2.4: Curated Problems Suite for Arrays & Strings
+
 As a **learner practicing pattern recognition**,  
 I want **3 curated problems (Two Sum II, Longest Substring Without Repeating Characters, Minimum Window Substring)**,  
 So that **I practice recognizing when to apply two pointers vs. dynamic sliding windows**.
 
 **Acceptance Criteria:**
+
 - **Given** the Problems tab in `/topics/arrays-and-strings/problems`,
 - **When** selecting any of the 3 problems,
 - **Then** the user sees description, real-world context, complexity target, and starter test template,
 - **And** running the problem executes the backend solution against pytest test suites, displaying pass/fail indicators and execution time.
 
 ### Story 2.5: Mini-App: Traffic Anomaly Monitor & Rate-Limiter
+
 As a **developer building practical software**,  
 I want **to implement both backend logic and frontend UI for the Traffic Anomaly Monitor mini-app**,  
 So that **I see how the sliding window pattern powers real-time server rate limiting**.
 
 **Acceptance Criteria:**
+
 - **Given** the mini-app page `/topics/arrays-and-strings/project`,
 - **When** simulated incoming HTTP traffic bursts are fired,
 - **Then** the backend sliding window rate-limiter evaluates request counts within the time window ($T = 60s$),
 - **And** the owner-implemented TypeScript UI visualizes the rolling window graph, flagging anomalies with red alerts when thresholds are breached.
 
 ### Story 2.6: Post-Assessment Grill & Mastery Reflection
+
 As a **learner completing Topic 1**,  
 I want **to take the post-assessment grill and review my score improvements on the dashboard**,  
 So that **my progress in pattern recognition and complexity analysis is validated**.
 
 **Acceptance Criteria:**
+
 - **Given** the user has completed all Topic 1 problem implementations and tests,
 - **When** the user takes the post-assessment grill,
 - **Then** scores (0-10) are recorded in SQLite,
@@ -223,33 +248,39 @@ So that **my progress in pattern recognition and complexity analysis is validate
 **Goal:** Complete the full learning loop for Topic 11 (Graphs), mastering BFS/DFS, topological sort, and Dijkstra's algorithm through Python generators, React Flow graph canvas adapters, and the Transit Route Pathfinder mini-app.
 
 ### Story 3.1: Topic 11 Diagnostic Grill & Graph Model Setup
+
 As a **learner starting Graphs**,  
 I want **to complete the pre-assessment grill and initialize graph data structures**,  
 So that **my baseline understanding of adjacency lists and graph traversals is established**.
 
 **Acceptance Criteria:**
+
 - **Given** the user navigates to `/topics/graphs`,
 - **When** opening the topic,
 - **Then** the pre-assessment grill evaluates BFS vs. DFS tradeoffs and shortest-path heuristics,
 - **And** the Overview page explains graph applications in social networks and routing engines with interactive diagrams.
 
 ### Story 3.2: Python Dijkstra & BFS/DFS Step Generators (Backend)
+
 As a **backend learner**,  
 I want **to implement Dijkstra's shortest path and BFS traversal algorithms with `Frame` yields**,  
 So that **I master priority queue relaxation and node exploration states**.
 
 **Acceptance Criteria:**
+
 - **Given** `backend/app/dsa/graphs/dijkstra.py` and `bfs_dfs.py` with TODO blocks,
 - **When** the owner implements the algorithms and runs `pytest tests/dsa/test_graphs.py`,
 - **Then** all tests pass (disconnected graphs, directed weighted edges, cycles, unreachable nodes),
 - **And** `POST /api/dsa/graphs/dijkstra/execute` returns frames capturing visited nodes, unvisited frontier, edge relaxations, and current distances.
 
 ### Story 3.3: TypeScript React Flow Graph Canvas Adapter (Frontend)
+
 As a **frontend learner**,  
 I want **to implement a React Flow canvas adapter consuming graph execution frames**,  
 So that **graph nodes and edges visually pulse, change colors, and animate wavefront expansions**.
 
 **Acceptance Criteria:**
+
 - **Given** a graph topology with nodes and weighted edges,
 - **When** the playback engine steps through frames,
 - **Then** nodes transition states visually (unvisited: grey, frontier: yellow, visiting: blue, relaxed: green),
@@ -257,33 +288,39 @@ So that **graph nodes and edges visually pulse, change colors, and animate wavef
 - **And** users can drag nodes on the canvas while animations continue cleanly without broken coordinates.
 
 ### Story 3.4: Curated Problems Suite for Graphs
+
 As a **learner practicing graph pattern recognition**,  
 I want **3 curated problems (Number of Islands, Course Schedule / Topological Sort, Network Delay Time / Dijkstra)**,  
 So that **I practice discerning grid BFS/DFS from dependency DAGs and weighted shortest paths**.
 
 **Acceptance Criteria:**
+
 - **Given** the Problems view at `/topics/graphs/problems`,
 - **When** the user selects any problem,
 - **Then** problem description, edge cases, and test templates are presented,
 - **And** the owner's code is tested via pytest with live feedback on test passing rate and algorithmic complexity.
 
 ### Story 3.5: Mini-App: Transit Route Pathfinder
+
 As a **developer building practical software**,  
 I want **to implement the Transit Route Pathfinder mini-app using Dijkstra's algorithm**,  
 So that **I see how graph algorithms solve subway route planning with live transfer delays**.
 
 **Acceptance Criteria:**
+
 - **Given** the mini-app at `/topics/graphs/project` featuring a subway network map,
 - **When** the user selects a start station and destination station with optional simulated transit line delays,
 - **Then** the owner's backend Dijkstra service computes the optimal path,
 - **And** the owner-implemented TypeScript UI animates the calculated path along the subway lines, displaying total transit time and transfer count.
 
 ### Story 3.6: Post-Assessment Grill & Cross-Archetype Mastery Comparison
+
 As a **learner completing both Phase 2 benchmark archetypes**,  
 I want **to complete the Topic 11 post-assessment and see comparative analytics on the dashboard**,  
 So that **both linear and non-linear algorithmic patterns are proven and recorded**.
 
 **Acceptance Criteria:**
+
 - **Given** all Topic 11 implementations pass tests,
 - **When** the post-assessment grill is completed,
 - **Then** scores are logged to SQLite,

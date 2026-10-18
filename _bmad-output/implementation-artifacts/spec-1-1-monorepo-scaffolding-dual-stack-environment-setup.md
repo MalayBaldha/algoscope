@@ -1,14 +1,14 @@
 ---
-title: 'Story 1.1: Monorepo Scaffolding & Dual-Stack Environment Setup'
-type: 'feature'
-created: '10-17-2026'
-status: 'done'
-baseline_commit: 'NO_COMMITS'
-route: 'dispatch'
+title: "Story 1.1: Monorepo Scaffolding & Dual-Stack Environment Setup"
+type: "feature"
+created: "10-17-2026"
+status: "done"
+baseline_commit: "NO_COMMITS"
+route: "dispatch"
 review_loop_iteration: 0
 context:
-  - '{project-root}/docs/architecture.md'
-  - '{project-root}/_bmad-output/implementation-artifacts/epic-1-context.md'
+  - "{project-root}/docs/architecture.md"
+  - "{project-root}/_bmad-output/implementation-artifacts/epic-1-context.md"
 ---
 
 <frozen-after-approval reason="human-owned intent — do not modify unless human renegotiates">
@@ -22,23 +22,25 @@ context:
 ## Boundaries & Constraints
 
 **Always:**
+
 - Keep frontend (`frontend/`) and backend (`backend/`) decoupled with clear separation of concerns.
 - Enforce strict TypeScript (`tsc --noEmit`) and strict Python formatting/linting via `ruff`.
 - Include standard health check endpoints (`GET /api/health` on FastAPI).
 - Ignore `node_modules`, `.next`, Python `.venv`, `__pycache__`, and `*.db` in `.gitignore`.
 
 **Never:**
+
 - Do not add complex database migrations or models in this story (deferred to Story 1.3).
 - Do not implement OAuth authentication logic yet (deferred to Story 1.2).
 - Do not mix frontend npm dependencies into the root directory.
 
 ## I/O & Edge-Case Matrix
 
-| Scenario | Input / State | Expected Output / Behavior | Error Handling |
-|----------|--------------|---------------------------|----------------|
-| Root script check | `npm run lint` or `npm run typecheck` | Executes linting across workspaces with 0 errors | Returns non-zero exit code on syntax/type failure |
-| Backend health | `GET /api/health` on running FastAPI | Returns HTTP 200 `{"status": "ok", "app": "AlgoScope API"}` | 500 error handled via standard exception handler |
-| Frontend build | `npm run build` inside `frontend/` | Next.js App Router static/SSR compilation succeeds | Non-zero exit code if compilation fails |
+| Scenario          | Input / State                         | Expected Output / Behavior                                  | Error Handling                                    |
+| ----------------- | ------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------- |
+| Root script check | `npm run lint` or `npm run typecheck` | Executes linting across workspaces with 0 errors            | Returns non-zero exit code on syntax/type failure |
+| Backend health    | `GET /api/health` on running FastAPI  | Returns HTTP 200 `{"status": "ok", "app": "AlgoScope API"}` | 500 error handled via standard exception handler  |
+| Frontend build    | `npm run build` inside `frontend/`    | Next.js App Router static/SSR compilation succeeds          | Non-zero exit code if compilation fails           |
 
 </frozen-after-approval>
 
@@ -57,6 +59,7 @@ context:
 ## Tasks & Acceptance
 
 **Execution:**
+
 - [x] `package.json` -- Create root workspace package.json with dev scripts -- Enables top-level project orchestration
 - [x] `.gitignore` -- Update root .gitignore with Node, Python venv, Next build, and DB ignores -- Prevents committing artifacts
 - [x] `frontend/package.json` & configs -- Scaffold Next.js 14 App Router, Tailwind CSS, and TypeScript configs -- Establishes frontend stack
@@ -66,6 +69,7 @@ context:
 - [x] `backend/tests/test_health.py` -- Create pytest test for health endpoint -- Establishes backend test runner
 
 **Acceptance Criteria:**
+
 - Given a clean environment, when `npm run build` is executed in `frontend/`, then compilation completes with 0 TypeScript and ESLint errors.
 - Given the FastAPI backend started with `uv run uvicorn app.main:app`, when `GET /api/health` is requested, then HTTP 200 `{"status": "ok", "app": "AlgoScope API"}` is returned.
 - Given the backend directory, when `uv run pytest` is executed, then all tests pass with 100% green output.
@@ -80,13 +84,15 @@ context:
 ## Spec Change Log
 
 ## Review Triage Log
-| Finding | Severity | Evidence | Disposition |
-|---------|----------|----------|-------------|
-| None | N/A | Clean greenfield monorepo setup passing all static analysis and unit tests | pass |
+
+| Finding | Severity | Evidence                                                                   | Disposition |
+| ------- | -------- | -------------------------------------------------------------------------- | ----------- |
+| None    | N/A      | Clean greenfield monorepo setup passing all static analysis and unit tests | pass        |
 
 ## Verification
 
 **Commands:**
+
 - `cd frontend && npm run build` -- expected: Build passes cleanly with no type or lint errors.
 - `cd backend && uv run pytest` -- expected: 1 passed.
 - `cd backend && uv run ruff check .` -- expected: All checks passed.

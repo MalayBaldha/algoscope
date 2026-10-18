@@ -15,9 +15,9 @@ export default function Home() {
           </span>
         </h1>
         <p className="text-lg text-slate-400 leading-relaxed">
-          AlgoScope connects algorithmic theory with full-stack engineering. Solve
-          patterns in Python, generate deterministic frame traces, and power custom
-          TypeScript visualizers and mini-apps.
+          AlgoScope connects algorithmic theory with full-stack engineering.
+          Solve patterns in Python, generate deterministic frame traces, and
+          power custom TypeScript visualizers and mini-apps.
         </p>
       </div>
 
@@ -26,9 +26,12 @@ export default function Home() {
           <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-500/10 text-indigo-400">
             <Layers className="h-5 w-5" />
           </div>
-          <h3 className="text-lg font-semibold text-slate-100">14 DSA Topics</h3>
+          <h3 className="text-lg font-semibold text-slate-100">
+            14 DSA Topics
+          </h3>
           <p className="mt-2 text-sm text-slate-400">
-            From Arrays & Strings to Dynamic Programming and Bit Manipulation, each with its own visualizer.
+            From Arrays & Strings to Dynamic Programming and Bit Manipulation,
+            each with its own visualizer.
           </p>
         </div>
 
@@ -36,9 +39,12 @@ export default function Home() {
           <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
             <Terminal className="h-5 w-5" />
           </div>
-          <h3 className="text-lg font-semibold text-slate-100">Dual-Stack Learning</h3>
+          <h3 className="text-lg font-semibold text-slate-100">
+            Dual-Stack Learning
+          </h3>
           <p className="mt-2 text-sm text-slate-400">
-            Owner implements Python algorithms and pytest suites alongside TypeScript frame adapters and state hooks.
+            Owner implements Python algorithms and pytest suites alongside
+            TypeScript frame adapters and state hooks.
           </p>
         </div>
 
@@ -48,7 +54,8 @@ export default function Home() {
           </div>
           <h3 className="text-lg font-semibold text-slate-100">14 Mini-Apps</h3>
           <p className="mt-2 text-sm text-slate-400">
-            Every topic powers a real-world app: Rate-limiters, LRU caches, schedulers, and transit routers.
+            Every topic powers a real-world app: Rate-limiters, LRU caches,
+            schedulers, and transit routers.
           </p>
         </div>
       </div>
