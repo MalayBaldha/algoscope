@@ -1,12 +1,35 @@
 """AlgoScope Backend Application Entry Point."""
 
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+from app.api.topics import router as topics_router
+from app.core.database import Base, SessionLocal, engine
+from app.db.seed_topics import seed_topics
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+    """Application lifespan context manager for startup and shutdown tasks."""
+    target_engine = getattr(app.state, "engine", engine)
+    session_factory = getattr(app.state, "session_factory", SessionLocal)
+
+    # Ensure database schema is initialized
+    Base.metadata.create_all(bind=target_engine)
+    # Seed default topics idempotently
+    with session_factory() as db:
+        seed_topics(db)
+    yield
+
 
 app = FastAPI(
     title="AlgoScope API",
     description="Backend API and DSA Execution Engine for AlgoScope",
     version="0.1.0",
+    lifespan=lifespan,
 )
 
 # Configure CORS for local development with Next.js frontend
@@ -17,6 +40,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(topics_router)
 
 
 @app.get("/api/health")
