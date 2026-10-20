@@ -29,7 +29,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 # - Retrospective appends its action items to action_items; the status view surfaces open ones
 generated: 10-17-2026 13:07
-last_updated: 10-18-2026 21:24
+last_updated: 10-20-2026 13:46
 project: AlgoScope
 project_key: NOKEY
 tracking_system: file-system
@@ -39,7 +39,7 @@ development_status:
   1-1-monorepo-scaffolding-dual-stack-environment-setup: review
   1-2-owner-implemented-oauth-authentication-session-management: review
   1-3-sqlite-database-models-topic-seed-scaffolding: review
-  1-4-frame-schema-contracts-playback-engine-state-machine-usealgo: backlog
+  1-4-frame-schema-contracts-playback-engine-state-machine-usealgo: review
   1-5-dashboard-shell-assessment-data-api: backlog
   epic-1-retrospective: optional
 
