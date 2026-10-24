@@ -47,7 +47,7 @@ export default function RootLayout({
               <nav className="flex items-center gap-6 text-sm font-medium text-slate-400">
                 <a
                   href="/"
-                  className="text-slate-200 transition hover:text-white"
+                  className="transition hover:text-white"
                 >
                   Topic Hub
                 </a>
