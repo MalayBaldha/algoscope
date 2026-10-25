@@ -149,3 +149,21 @@ export async function getTopics(): Promise<Topic[]> {
   }
   return res.json();
 }
+
+/**
+ * Fetch a single topic by slug.
+ */
+export async function getTopicBySlug(slug: string): Promise<Topic> {
+  const res = await fetch(`${API_BASE_URL}/api/topics/${slug}`, {
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    if (res.status === 404) {
+      throw new Error(`Topic with slug '${slug}' not found`);
+    }
+    throw new Error(
+      `Failed to fetch topic '${slug}': ${res.status} ${res.statusText}`
+    );
+  }
+  return res.json();
+}
