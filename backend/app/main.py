@@ -7,6 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.assessments import router as assessments_router
+from app.api.dsa import router as dsa_router
 from app.api.progress import router as progress_router
 from app.api.topics import router as topics_router
 from app.core.database import Base, SessionLocal, engine
@@ -46,6 +47,7 @@ app.add_middleware(
 app.include_router(topics_router)
 app.include_router(assessments_router)
 app.include_router(progress_router)
+app.include_router(dsa_router)
 
 
 @app.get("/api/health")
