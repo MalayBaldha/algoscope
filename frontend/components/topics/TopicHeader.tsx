@@ -14,8 +14,47 @@ import {
   Clock,
   Award,
   HelpCircle,
+  Brackets,
+  Hash,
+  Binary,
+  ArrowUpDown,
+  Link2,
+  ListOrdered,
+  GitFork,
+  Network,
+  Zap,
+  Share2,
+  Type,
+  Grid,
+  Code2,
 } from "lucide-react";
 import { Topic, AssessmentRecord } from "@/types/models";
+
+// Map topic icon slugs to dedicated Lucide icon components
+const TOPIC_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  brackets: Brackets,
+  hash: Hash,
+  binary: Binary,
+  "arrow-up-down": ArrowUpDown,
+  link: Link2,
+  layers: Layers,
+  "list-ordered": ListOrdered,
+  "git-fork": GitFork,
+  network: Network,
+  zap: Zap,
+  "share-2": Share2,
+  type: Type,
+  grid: Grid,
+  cpu: Cpu,
+};
+
+function renderTopicIcon(iconSlug?: string | null) {
+  if (!iconSlug) {
+    return <Code2 className="h-5 w-5 text-indigo-400" />;
+  }
+  const IconComponent = TOPIC_ICON_MAP[iconSlug.toLowerCase()] || Code2;
+  return <IconComponent className="h-5 w-5 text-indigo-400" />;
+}
 
 interface TopicHeaderProps {
   topic: Topic;
@@ -134,10 +173,10 @@ export const TopicHeader: React.FC<TopicHeaderProps> = ({
       {/* Main Topic Info */}
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
         <div>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xl" role="img" aria-label="Topic Icon">
-              {topic.icon || "📦"}
-            </span>
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-indigo-500/20 bg-indigo-500/10 shadow-sm">
+              {renderTopicIcon(topic.icon)}
+            </div>
             <h1 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
               {topic.title}
             </h1>

@@ -1,5 +1,5 @@
 /**
- * API client methods for fetching progress, streak, and assessment metrics.
+ * API client methods for fetching progress, streak, assessment metrics, and algorithm executions.
  */
 
 import {
@@ -12,6 +12,8 @@ import {
   ProgressUpdatePayload,
   Topic,
 } from "@/types/models";
+import type { AlgorithmExecutionResponse } from "@/types/dsa";
+import type { SlidingWindowState } from "@/types/canvas";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -166,4 +168,37 @@ export async function getTopicBySlug(slug: string): Promise<Topic> {
     );
   }
   return res.json();
+}
+
+/**
+ * Execute Sliding Window Maximum via backend FastAPI execution endpoint.
+ * Calls POST /api/dsa/arrays/sliding-window/execute.
+ * Throws an Error if backend is unreachable or execution fails.
+ */
+export async function executeSlidingWindow(
+  nums: number[],
+  k: number
+): Promise<AlgorithmExecutionResponse<SlidingWindowState>> {
+  try {
+    const res = await fetch(
+      `${API_BASE_URL}/api/dsa/arrays/sliding-window/execute`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nums, k }),
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error(
+        `Backend sliding window execution failed: ${res.status} ${res.statusText}`
+      );
+    }
+
+    return await res.json();
+  } catch (err: unknown) {
+    const message =
+      err instanceof Error ? err.message : "Network error contacting backend";
+    throw new Error(`Backend algorithm execution failed: ${message}`);
+  }
 }

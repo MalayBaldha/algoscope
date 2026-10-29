@@ -97,12 +97,12 @@ export function PlaybackControls({
   return (
     <div
       className={cn(
-        "flex flex-col gap-3 rounded-xl border border-zinc-800 bg-zinc-950/90 p-4 shadow-xl backdrop-blur-sm text-zinc-100",
+        "flex flex-col gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-4 shadow-xl backdrop-blur-sm text-slate-100",
         className
       )}
     >
       {/* Frame explanation and phase banner */}
-      <div className="flex items-center justify-between gap-3 border-b border-zinc-800/80 pb-3">
+      <div className="flex items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
         <div className="flex items-center gap-2 overflow-hidden">
           <span
             className={cn(
@@ -112,11 +112,11 @@ export function PlaybackControls({
           >
             {phase}
           </span>
-          <p className="text-sm text-zinc-300 truncate" title={explanation}>
+          <p className="text-sm text-slate-300 truncate" title={explanation}>
             {explanation}
           </p>
         </div>
-        <div className="shrink-0 font-mono text-xs text-zinc-400">
+        <div className="shrink-0 font-mono text-xs text-slate-400">
           Step {totalSteps > 0 ? currentIndex + 1 : 0} / {totalSteps}
         </div>
       </div>
@@ -135,7 +135,7 @@ export function PlaybackControls({
           aria-valuemin={0}
           aria-valuemax={Math.max(0, totalSteps - 1)}
           aria-valuetext={`Step ${totalSteps > 0 ? currentIndex + 1 : 0} of ${totalSteps}`}
-          className="h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-zinc-800 accent-blue-500 transition-all hover:bg-zinc-700 disabled:cursor-not-allowed disabled:opacity-40"
+          className="h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-slate-800 accent-indigo-500 transition-all hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-40"
         />
       </div>
 
@@ -149,7 +149,7 @@ export function PlaybackControls({
             disabled={disabled || (isAtStart && !isPlaying)}
             aria-label="Reset to start"
             title="Reset"
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-900 text-slate-300 transition-colors hover:bg-slate-800 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
           >
             <RotateCcw className="h-4 w-4" />
           </button>
@@ -161,7 +161,7 @@ export function PlaybackControls({
             disabled={disabled || isAtStart}
             aria-label="Step backward"
             title="Step backward (←)"
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-900 text-slate-300 transition-colors hover:bg-slate-800 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
           >
             <SkipBack className="h-4 w-4" />
           </button>
@@ -177,7 +177,7 @@ export function PlaybackControls({
               "flex h-9 px-4 items-center justify-center gap-2 rounded-lg font-medium text-sm transition-all shadow-sm",
               isPlaying
                 ? "bg-amber-600 hover:bg-amber-500 text-white"
-                : "bg-blue-600 hover:bg-blue-500 text-white disabled:bg-zinc-800 disabled:text-zinc-500 disabled:cursor-not-allowed"
+                : "bg-indigo-600 hover:bg-indigo-500 text-white disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed"
             )}
           >
             {isPlaying ? (
@@ -200,7 +200,7 @@ export function PlaybackControls({
             disabled={disabled || isAtEnd}
             aria-label="Step forward"
             title="Step forward (→)"
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-900 text-slate-300 transition-colors hover:bg-slate-800 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
           >
             <SkipForward className="h-4 w-4" />
           </button>
@@ -208,11 +208,11 @@ export function PlaybackControls({
 
         {/* Speed Selector and keyboard hints */}
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 text-xs text-zinc-400 mr-1">
-            <Gauge className="h-3.5 w-3.5 text-zinc-500" />
+          <div className="flex items-center gap-1 text-xs text-slate-400 mr-1">
+            <Gauge className="h-3.5 w-3.5 text-slate-500" />
             <span className="hidden sm:inline">Speed:</span>
           </div>
-          <div className="flex rounded-lg border border-zinc-800 bg-zinc-900 p-0.5">
+          <div className="flex rounded-lg border border-slate-800 bg-slate-900 p-0.5">
             {AVAILABLE_SPEEDS.map((s) => (
               <button
                 key={s}
@@ -221,8 +221,8 @@ export function PlaybackControls({
                 className={cn(
                   "rounded-md px-2.5 py-1 text-xs font-medium transition-colors",
                   speed === s
-                    ? "bg-blue-600 text-white shadow-sm"
-                    : "text-zinc-400 hover:text-zinc-200"
+                    ? "bg-indigo-600 text-white shadow-sm"
+                    : "text-slate-400 hover:text-slate-200"
                 )}
               >
                 {s}x
